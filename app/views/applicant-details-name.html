@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Applicant name
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <button class="link-back">Back</button>
+
+      <h1 class="heading-large">
+        What is {% if data['applicant-type'] == "agent" %}the applicants{% endif %}{% if data['applicant-type'] == "applicant" %}your{% endif %} name?
+      </h1>
+
+      <form class="form" action="applicant-details-dob" method="POST" novalidate>
+        <div class="form-group" data-required="Please provide {% if data['applicant-type'] == 'agent' %}applicant{% endif %}{% if data['applicant-type'] == 'applicant' %}your{% endif %} name">
+          <label class="form-label form-label-bold" for="applicant-name">Full name</label>
+          <input class="form-control" id="applicant-name" type="text" name="applicant-name" value="{{ data['applicant-name'] }}" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+
+      </form>
+
+      <!--<details>-->
+        <!--<summary><span class="summary">Help with applicant name</span></summary>-->
+        <!--<div class="panel panel-border-narrow">-->
+          <!--<p>A temporary event notice may only be given by an individual and not, for example, by an organisation or club or business. The individual giving the notice is the proposed “premises user”. Within businesses, clubs or organisations, one individual will therefore need to be identified as the proposed premises user.</p>-->
+        <!--</div>-->
+      <!--</details>-->
+    </div>
+
+    <div class="column-one-third">
+      <div class="application-summary">
+        <h2 class="heading-medium">Application number</h2>
+        <span class="heading-large">X2F4-59Q3</span>
+        <p class="font-small">Use this number to return to your application</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}

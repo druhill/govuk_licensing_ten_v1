@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Applicant type
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <a class="link-back" href="#">Back</a>
+
+      <form class="form" action="personal-licence" method="POST" novalidate>
+        <div class="form-group" data-required>
+          <fieldset>
+
+             <legend>
+               <h1 class="heading-large">
+                 Who is submitting this application?
+               </h1>
+             </legend>
+
+             <div class="multiple-choice">
+               <input id="applicant-type-applicant" type="radio" name="applicant-type" value="applicant" {{ checked('applicant-type','applicant') }}>
+               <label for="applicant-type-applicant">I am the applicant</label>
+             </div>
+
+             <div class="multiple-choice">
+               <input id="applicant-type-agent" type="radio" name="applicant-type" value="agent" {{ checked('applicant-type','agent') }}>
+               <label for="applicant-type-agent">I am an agent working on behalf of the applicant</label>
+             </div>
+
+           </fieldset>
+         </div>
+         <div class="form-group">
+           <input class="button" type="submit" value="Continue">
+         </div>
+       </form>
+    </div>
+
+      <div class="column-one-third">
+          <div class="application-summary">
+              <h2 class="heading-medium">Application number</h2>
+              <span class="heading-large">X2F4-59Q3</span>
+              <p class="font-small">Use this number to return to your application</p>
+          </div>
+      </div>
+
+  </div>
+</main>
+
+{% endblock %}

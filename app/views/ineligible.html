@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Ineligible
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <button class="link-back">Back</button>
+
+      <h1 class="heading-large">
+        Your event is not eligible
+      </h1>
+
+      <p>The event you’re holding does not need a temporary event notice.</p>
+
+      <p>See more about <a href="/about-licensing">licensing for events</a>.</p>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}

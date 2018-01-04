@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  When will you be providing entertainment, such as music, dancing or indoor sporting events
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <button class="link-back">Back</button>
+
+      <h1 class="heading-large">
+         When will you be providing entertainment, such as music, dancing or indoor sporting events?
+      </h1>
+
+      <form class="form" action="licensable-activity-nudity" method="POST" novalidate>
+        <fieldset class="form-group" data-required="Please provide start time">
+          <legend>
+            <span class="form-label-bold">Start time?</span>
+            <span class="form-hint">For example, 14:30</span>
+          </legend>
+          <div class="form-date">
+            <div class="form-group form-group-hour">
+              <label for="entertainment-start-hour">Hour</label>
+              <input class="form-control" id="entertainment-start-hour" name="entertainment-start-hour" type="number" data-non-numeric data-no-keys-nav data-max-length=2 pattern="[0-9]*" min="0" max="24" value="{{ data['entertainment-start-hour'] }}" autocomplete="off">
+            </div>
+
+            <div class="form-group form-group-separator">:</div>
+
+            <div class="form-group form-group-minute">
+              <label for="entertainment-start-minute">Minute</label>
+              <input class="form-control" id="entertainment-start-minute" name="entertainment-start-minute" type="number" data-non-numeric data-no-keys-nav data-max-length=2 pattern="[0-9]*" min="0" max="59" value="{{ data['entertainment-start-minute'] }}" autocomplete="off">
+            </div>
+
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group" data-required="Please provide end time">
+          <legend>
+            <span class="form-label-bold">End time?</span>
+            <span class="form-hint">For example, 20:30</span>
+          </legend>
+          <div class="form-date">
+            <div class="form-group form-group-hour">
+              <label for="entertainment-end-hour">Hour</label>
+              <input class="form-control" id="entertainment-end-hour" name="entertainment-end-hour" type="number" data-non-numeric data-no-keys-nav data-max-length=2 pattern="[0-9]*" min="0" max="24" value="{{ data['entertainment-end-hour'] }}" autocomplete="off">
+            </div>
+
+            <div class="form-group form-group-separator">:</div>
+
+            <div class="form-group form-group-minute">
+              <label for="entertainment-end-minute">Minute</label>
+              <input class="form-control" id="entertainment-end-minute" name="entertainment-end-minute" type="number" data-non-numeric data-no-keys-nav data-max-length=2 pattern="[0-9]*" min="0" max="59" value="{{ data['entertainment-end-minute'] }}" autocomplete="off">
+            </div>
+
+          </div>
+        </fieldset>
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+      </form>
+    </div>
+
+    <div class="column-one-third">
+      <div class="application-summary">
+        <h2 class="heading-medium">Application number</h2>
+        <span class="heading-large">X2F4-59Q3</span>
+        <p class="font-small">Use this number to return to your application</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}

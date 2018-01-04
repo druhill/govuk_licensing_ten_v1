@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Number of previous temporary event notices
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <button class="link-back">Back</button>
+
+      <form class="form" action="previous-events-close" method="POST">
+
+        <div class="form-group" data-required>
+          <fieldset>
+            <legend>
+              <h1 class="heading-large">
+                {% if data['applicant-type'] == "agent" %}Has the applicant{% endif %}{% if data['applicant-type'] == "applicant" %}Have you{% endif %} or any associates given any previous temporary event notices?
+              </h1>
+              <span class="form-hint body-text">Include all events falling in the same calendar year as this event</span>
+              <span class="body-text">Select all that apply:</span>
+            </legend>
+
+            <div class="multiple-choice" data-target="previous-notice-standard-expand">
+              <input class="js-select-choice" id="previous-notice-standard" type="checkbox" name="previous-notice" value="standard" {{ checked('previous-notice','standard') }}>
+              <label for="previous-notice-standard">Standard temporary event notice</label>
+            </div>
+            <div class="panel panel-border-narrow js-hidden" id="previous-notice-standard-expand">
+              <label class="form-label" for="previous-notice-standard-num">How many?</label>
+              <input class="form-control form-control-1-8" name="previous-notice-standard-num" data-non-numeric type="text" id="previous-notice-standard-num" pattern="[0-9]*" value="{{ data['previous-notice-standard-num'] }}">
+            </div>
+
+            <div class="multiple-choice" data-target="previous-notice-late-expand">
+              <input class="js-select-choice" id="previous-notice-late" type="checkbox" name="previous-notice" value="late" {{ checked('previous-notice','late') }}>
+              <label for="previous-notice-late">Late temporary event notice</label>
+            </div>
+            <div class="panel panel-border-narrow js-hidden" id="previous-notice-late-expand">
+              <label class="form-label" for="previous-notice-late-num">How many?</label>
+              <input class="form-control form-control-1-8" name="previous-notice-late-num" data-non-numeric type="text" id="previous-notice-late-num" pattern="[0-9]*" value="{{ data['previous-notice-late-num'] }}">
+            </div>
+            <p class="form-block">or</p>
+            <div class="multiple-choice">
+              <input class="js-deselect-choice"  id="previous-notice-none" type="checkbox" name="previous-notice" value="none" {{ checked('previous-notice','none') }}>
+              <label for="previous-notice-none">None of the above</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!--<div class="form-group">-->
+          <!--<label class="form-label form-label-bold" for="previous-licence-standard">Number of standard temporary event notices</label>-->
+          <!--<input class="form-control form-control-1-8" id="previous-licence-standard" type="text" name="previous-licence-standard" data-non-numeric pattern="[0-9]*" value="{{ data['previous-licence-standard'] }}" autocomplete="off">-->
+        <!--</div>-->
+
+        <!--<div class="form-group">-->
+          <!--<label class="form-label form-label-bold" for="previous-licence-late">Number of late temporary event notices</label>-->
+          <!--<input class="form-control form-control-1-8" id="previous-licence-late" type="text" name="previous-licence-late" data-non-numeric pattern="[0-9]*" value="{{ data['previous-licence-late'] }}" autocomplete="off">-->
+        <!--</div>-->
+
+        <div class="form-group">
+            <div class="form-group">
+              <input class="button" type="submit" value="Continue">
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

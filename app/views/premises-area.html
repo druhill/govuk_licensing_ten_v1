@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Premises area
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <button class="link-back">Back</button>
+
+      <form class="form" action="applicant-type" method="POST">
+        <div class="form-group" data-required>
+          <fieldset>
+
+            <legend>
+              <h1 class="heading-large">
+                Are you using the entire premises?
+              </h1>
+            </legend>
+
+            <div class="multiple-choice" data-target="entire-premises-yes">
+              <input id="entire-premises-yes" type="radio" name="entire-premises" value="yes" {{ checked('entire-premises','yes') }}>
+              <label for="entire-premises-yes">Yes</label>
+            </div>
+
+            <div class="multiple-choice" data-target="entire-premises-no-expand">
+              <input id="entire-premises-no" type="radio" name="entire-premises" value="no" {{ checked('entire-premises','no') }}>
+              <label for="entire-premises-no">No</label>
+            </div>
+            <div class="panel panel-border-narrow js-hidden" id="entire-premises-no-expand">
+            <div class="form-control-3-4">
+              <label class="form-label form-label-bold" for="premises-area">Describe which parts of the premises will be in use for this event</label>
+              <textarea class="js-character-counter form-control" name="premises-area" id="premises-area" rows="4" maxlength="320" autocomplete="off">{{ data['premises-area'] }}</textarea>
+            </div>
+            </div>
+
+
+          </fieldset>
+        </div>
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+      </form>
+    </div>
+
+    <div class="column-one-third">
+      <div class="application-summary">
+        <h2 class="heading-medium">Application number</h2>
+        <span class="heading-large">X2F4-59Q3</span>
+        <p class="font-small">Use this number to return to your application</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

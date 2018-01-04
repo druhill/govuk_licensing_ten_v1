@@ -1,0 +1,175 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Continue your application
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-large">
+        Continue your application
+      </h1>
+
+      <h2 class="heading-medium">
+        Event details
+      </h2>
+
+      <dl class="govuk-check-your-answers cya-questions-short">
+        <div>
+          <dt class="cya-question">
+            Start date
+          </dt>
+          <dd class="cya-answer">
+              {{ data['event-start-date'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="event-dates" aria-label="Change event start date">Change</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="cya-question">
+            Duration
+          </dt>
+          <dd class="cya-answer">
+            {% if data['event-duration'] == 1 %}{{ data['event-duration'] }} day{% endif %}
+            {% if data['event-duration'] > 1 %}{{ data['event-duration'] }} days{% endif %}
+          </dd>
+          <dd class="cya-change">
+            <a href="event-dates" aria-label="Change event duration">Change</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="cya-question">
+            Description
+          </dt>
+          <dd class="cya-answer">
+            {{ data['event-description'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="event-description" aria-label="Change type of event">Change</a>
+          </dd>
+        </div>
+        {% if data['licensable-activities'].indexOf('Alcohol') !== -1 %}
+          <div>
+            <dt class="cya-question">
+              Selling alcohol
+            </dt>
+            <dd class="cya-answer">
+              {{ data['alcohol-start-hour'] }}:{{ data['alcohol-start-minute'] }} to {{ data['alcohol-end-hour'] }}:{{ data['alcohol-end-minute'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="licensable-activity-alcohol" aria-label="Change alcohol sale times">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data['licensable-activities'].indexOf('Members') !== -1 %}
+          <div>
+            <dt class="cya-question">
+              Serving alcohol to members of a private club
+            </dt>
+            <dd class="cya-answer">
+              {{ data['members-start-hour'] }}:{{ data['members-start-minute'] }} to {{ data['members-end-hour'] }}:{{ data['members-end-minute'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="licensable-activity-members" aria-label="Change alcohol serving times">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data['licensable-activities'].indexOf('Entertainment') !== -1 %}
+          <div>
+            <dt class="cya-question">
+              Providing entertainment, such as music, dancing or indoor sporting events
+            </dt>
+            <dd class="cya-answer">
+              {{ data['entertainment-start-hour'] }}:{{ data['entertainment-start-minute'] }} to {{ data['entertainment-end-hour'] }}:{{ data['entertainment-end-minute'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="licensable-activity-entertainment" aria-label="Change entertainment times">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data['licensable-activities'].indexOf('Nudity') !== -1 %}
+          <div>
+            <dt class="cya-question">
+              Providing entertainment including live display of nudity
+            </dt>
+            <dd class="cya-answer">
+              {{ data['nudity-start-hour'] }}:{{ data['nudity-start-minute'] }} to {{ data['nudity-end-hour'] }}:{{ data['nudity-end-minute'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="licensable-activity-nudity" aria-label="Change nudity times">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data['licensable-activities'].indexOf('Food') !== -1 %}
+          <div>
+            <dt class="cya-question">
+              Serving hot food or drink between 11pm and 5am
+            </dt>
+            <dd class="cya-answer">
+              {{ data['food-start-hour'] }}:{{ data['food-start-minute'] }} to {{ data['food-end-hour'] }}:{{ data['food-end-minute'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="licensable-activity-food" aria-label="Change food times">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+      </dl>
+
+      <h2 class="heading-medium">
+        Location details
+      </h2>
+      <dl class="govuk-check-your-answers cya-questions-short">
+        {% if data['event-address'] %}
+          <div>
+            <dt class="cya-question">
+              Premises
+            </dt>
+            <dd class="cya-answer">
+              {{ data['event-address'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="event-postcode" aria-label="Change premises">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data['other-location-description'] %}
+        <div>
+          <dt class="cya-question">
+            Additional information
+          </dt>
+          <dd class="cya-answer">
+            {{ data['other-location-description'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="event-postcode" aria-label="Change additional location information">Change</a>
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+      <br>
+      <div class="form-group">
+        <a href="premises-licence" class="button">Continue the application</a>
+      </div>
+    </div>
+
+    <div class="column-one-third">
+      <div class="application-summary">
+        <h2 class="heading-medium">Application number</h2>
+        <span class="heading-large">X2F4-59Q3</span>
+        <p class="font-small">Use this number to return to your application</p>
+      </div>
+    </div>
+    
+  </div>
+</main>
+
+{% endblock %}

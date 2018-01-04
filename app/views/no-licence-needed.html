@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  No licence needed
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <button class="link-back">Back</button>
+
+      <h1 class="heading-large">You don’t need to submit a temporary event notice</h1>
+
+      <p>You don’t need to submit a temporary event notice as you aren’t doing any activities that require one.</p>
+
+      <a href="https://www.gov.uk/" class="button">Return to GOV.UK</a>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Personal licence
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <button class="link-back">Back</button>
+
+      <form class="form" action="previous-events" method="POST">
+        <div class="form-group" data-required>
+          <fieldset>
+
+            <legend>
+              <h1 class="heading-large">
+                {% if data['applicant-type'] == "agent" %}Does the applicant{% endif %}{% if data['applicant-type'] == "applicant" %}Do you{% endif %} hold a valid personal licence?
+              </h1>
+            </legend>
+
+            <div class="multiple-choice" data-target="personal-licence-yes-expand">
+              <input id="personal-licence-yes" type="radio" name="personal-licence" value="yes" {{ checked('personal-licence','yes') }}>
+              <label for="personal-licence-yes">Yes</label>
+            </div>
+            <div class="panel panel-border-narrow js-hidden" id="personal-licence-yes-expand">
+              <div class="form-group">
+                <label class="form-label" for="personal-licence-yes-num">Licence number</label>
+                <input class="form-control form-control-3-4" name="personal-licence-yes-num" data-non-numeric type="text" id="personal-licence-yes-num" pattern="[0-9]\d*(\.\d+)?" value="{{ data['personal-licence-yes-num'] }}">
+              </div>
+
+              <!--<fieldset class="form-group" data-required="Please provide your date of birth">-->
+                <!--<legend>-->
+                  <!--<span>Date of issue</span>-->
+                  <!--<span class="form-hint">For example, 31 3 1980</span>-->
+                <!--</legend>-->
+                <!--<div class="form-date">-->
+                  <!--<div class="form-group form-group-day">-->
+                    <!--<label for="applicant-dob-day">Day</label>-->
+                    <!--<input class="form-control" id="applicant-dob-day" name="applicant-dob-day" type="number"-->
+                           <!--data-non-numeric data-no-keys-nav data-max-length=2 pattern="[0-9]*" min="0" max="31" value="{{ data['applicant-dob-day'] }}" autocomplete="off">-->
+                  <!--</div>-->
+
+                  <!--<div class="form-group form-group-month">-->
+                    <!--<label for="applicant-dob-month">Month</label>-->
+                    <!--<input class="form-control" id="applicant-dob-month" name="applicant-dob-month" type="number"-->
+                           <!--data-non-numeric data-no-keys-nav data-max-length=2 pattern="[0-9]*" min="0" max="12" value="{{ data['applicant-dob-month'] }}" autocomplete="off">-->
+                  <!--</div>-->
+
+                  <!--<div class="form-group form-group-year">-->
+                    <!--<label for="applicant-dob-year">Year</label>-->
+                    <!--<input class="form-control" id="applicant-dob-year" name="applicant-dob-year" type="number"-->
+                           <!--data-non-numeric data-no-keys-nav data-max-length=4 pattern="[0-9]*" min="0" max="2014" value="{{ data['applicant-dob-year'] }}" autocomplete="off">-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</fieldset>-->
+
+              <!--<div class="form-group">-->
+                <!--<label class="form-label" for="personal-licence-yes-auth">Issuing authority</label>-->
+                <!--<input class="form-control form-control-3-4" name="personal-licence-yes-auth" type="text" id="personal-licence-yes-auth" value="{{ data['personal-licence-yes-auth'] }}">-->
+              <!--</div>-->
+
+            </div>
+
+            <div class="multiple-choice" data-target="personal-licence-no-expand">
+              <input id="personal-licence-no" type="radio" name="personal-licence" value="no" {{ checked('personal-licence','no') }}>
+              <label for="personal-licence-no">No</label>
+            </div>
+
+          </fieldset>
+        </div>
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+      </form>
+
+      <!--<details>-->
+        <!--<summary><span class="summary">Help with personal licence</span></summary>-->
+        <!--<div class="panel panel-border-narrow">-->
+          <!--<p>A personal licence holder (issued under the Licensing Act 2003) may give up to 50 temporary event notices (including 10 late notices) in any calendar year. An individual who does not hold a personal licence may only give 5 temporary event notices (including 2 late notices) in England and Wales in any calendar year. A calendar year is the period between 1st January to 31st December inclusive in any year.</p>-->
+        <!--</div>-->
+      <!--</details>-->
+    </div>
+
+    <div class="column-one-third">
+      <div class="application-summary">
+        <h2 class="heading-medium">Application number</h2>
+        <span class="heading-large">X2F4-59Q3</span>
+        <p class="font-small">Use this number to return to your application</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

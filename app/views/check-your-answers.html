@@ -1,0 +1,388 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+Check your answers
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-large">
+       Check your answers before sending your application
+     </h1>
+
+      <h2 class="heading-medium">
+        Event details
+      </h2>
+
+      <dl class="govuk-check-your-answers cya-questions-short">
+        <div>
+          <dt class="cya-question">
+            Start date
+          </dt>
+          <dd class="cya-answer">
+              {{ data['event-start-date'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="event-dates?next=check-your-answers" aria-label="Change event start date">Change</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="cya-question">
+            Duration
+          </dt>
+          <dd class="cya-answer">
+            {% if data['event-duration'] == 1 %}{{ data['event-duration'] }} day{% endif %}
+            {% if data['event-duration'] > 1 %}{{ data['event-duration'] }} days{% endif %}
+          </dd>
+          <dd class="cya-change">
+            <a href="event-dates?next=check-your-answers" aria-label="Change event duration">Change</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="cya-question">
+            Description
+          </dt>
+          <dd class="cya-answer">
+            {{ data['event-description'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="event-description?next=check-your-answers" aria-label="Change type of event">Change</a>
+          </dd>
+        </div>
+        {% if data['licensable-activities'].indexOf('Alcohol') !== -1 %}
+          <div>
+            <dt class="cya-question">
+              Selling alcohol
+            </dt>
+            <dd class="cya-answer">
+              {{ data['alcohol-start-hour'] }}:{{ data['alcohol-start-minute'] }} to {{ data['alcohol-end-hour'] }}:{{ data['alcohol-end-minute'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="licensable-activity-alcohol?next=check-your-answers" aria-label="Change alcohol sale times">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data['licensable-activities'].indexOf('Members') !== -1 %}
+          <div>
+            <dt class="cya-question">
+              Serving alcohol
+            </dt>
+            <dd class="cya-answer">
+              {{ data['members-start-hour'] }}:{{ data['members-start-minute'] }} to {{ data['members-end-hour'] }}:{{ data['members-end-minute'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="licensable-activity-members?next=check-your-answers" aria-label="Change alcohol serving times">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data['licensable-activities'].indexOf('Entertainment') !== -1 %}
+          <div>
+            <dt class="cya-question">
+              Providing entertainment
+            </dt>
+            <dd class="cya-answer">
+              {{ data['entertainment-start-hour'] }}:{{ data['entertainment-start-minute'] }} to {{ data['entertainment-end-hour'] }}:{{ data['entertainment-end-minute'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="licensable-activity-entertainment?next=check-your-answers" aria-label="Change entertainment times">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data['licensable-activities'].indexOf('Nudity') !== -1 %}
+          <div>
+            <dt class="cya-question">
+              Providing nude entertainment
+            </dt>
+            <dd class="cya-answer">
+              {{ data['nudity-start-hour'] }}:{{ data['nudity-start-minute'] }} to {{ data['nudity-end-hour'] }}:{{ data['nudity-end-minute'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="licensable-activity-nudity?next=check-your-answers" aria-label="Change nudity times">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data['licensable-activities'].indexOf('Food') !== -1 %}
+          <div>
+            <dt class="cya-question">
+              Late night refreshments
+            </dt>
+            <dd class="cya-answer">
+              {{ data['food-start-hour'] }}:{{ data['food-start-minute'] }} to {{ data['food-end-hour'] }}:{{ data['food-end-minute'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="licensable-activity-food?next=check-your-answers" aria-label="Change food times">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+      </dl>
+
+      <h2 class="heading-medium">
+        Location details
+      </h2>
+      <dl class="govuk-check-your-answers cya-questions-short">
+        {% if data['event-address'] %}
+          <div>
+            <dt class="cya-question">
+              Premises
+            </dt>
+            <dd class="cya-answer">
+              {{ data['event-address'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="event-postcode?next=check-your-answers" aria-label="Change premises">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data['lat-input'] %}
+        <div>
+          <dt class="cya-question">
+            Location
+          </dt>
+          <dd class="cya-answer">
+            {{ data['lat-input'] }}, {{ data['lng-input'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="event-postcode?next=check-your-answers" aria-label="Change location">Change</a>
+          </dd>
+        </div>
+        {% endif %}
+        {% if data['other-location-description'] %}
+        <div>
+          <dt class="cya-question">
+            Additional information
+          </dt>
+          <dd class="cya-answer">
+            {{ data['other-location-description'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="event-postcode?next=check-your-answers" aria-label="Change additional location information">Change</a>
+          </dd>
+        </div>
+        {% endif %}
+        {% if data['existing-licence-premises-num'] %}
+        <div>
+          <dt class="cya-question">
+            Licence number
+          </dt>
+          <dd class="cya-answer">
+            {{ data['existing-licence-premises-num'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="premises-licence?next=check-your-answers" aria-label="Change premises licence number">Change</a>
+          </dd>
+        </div>
+        {% endif %}
+        {% if data['existing-licence-club-num'] %}
+        <div>
+          <dt class="cya-question">
+            Certificate number
+          </dt>
+          <dd class="cya-answer">
+            {{ data['existing-licence-club-num'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="premises-licence?next=check-your-answers" aria-label="Change club premises certificate number">Change</a>
+          </dd>
+        </div>
+        {% endif %}
+      </dl>
+
+      <h2 class="heading-medium">
+        Applicant details
+      </h2>
+      <dl class="govuk-check-your-answers cya-questions-short">
+        <div>
+          <dt class="cya-question">
+            Full name
+          </dt>
+          <dd class="cya-answer">
+            {{ data['applicant-name'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="applicant-details-name?next=check-your-answers" aria-label="Change full name">Change</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="cya-question">
+            Date of birth
+          </dt>
+          <dd class="cya-answer">
+            {{ data['applicant-dob-day'] }}
+            {{ getMonthWord(data['applicant-dob-month']) }}
+            {{ data['applicant-dob-year'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="applicant-details-dob?next=check-your-answers" aria-label="Change date of birth">Change</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="cya-question">
+            Place of birth
+          </dt>
+          <dd class="cya-answer">
+            {{ data['place-of-birth'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="applicant-details-pob?next=check-your-answers" aria-label="Change place of birth">Change</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="cya-question">
+            National Insurance number
+          </dt>
+          <dd class="cya-answer">
+            {{ data['applicant-ni'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="applicant-details-ni?next=check-your-answers" aria-label="Change National Insurance number">Change</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="cya-question">
+            Address
+          </dt>
+          <dd class="cya-answer">
+            {{ data['applicant-address'] }}
+          </dd>
+          <dd class="cya-change">
+            <a href="applicant-details-postcode?next=check-your-answers" aria-label="Change applicant address">Change</a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="heading-medium">
+        Contact details
+      </h2>
+      <dl class="govuk-check-your-answers cya-questions-short">
+        <div>
+          <dt class="cya-question">
+            Preferred method
+          </dt>
+          <dd class="cya-answer">
+            {% if data['contact-method'] == 'email' %}Email{% endif %}
+            {% if data['contact-method'] == 'phone' %}Phone{% endif %}
+            {% if data['contact-method'] == 'post' %}Post{% endif %}
+          </dd>
+          <dd class="cya-change">
+            <a href="contact-details?next=check-your-answers" aria-label="Change contact method">Change</a>
+          </dd>
+        </div>
+        {% if data['contact-method'] == 'email' %}
+          <div>
+            <dt class="cya-question">
+              Email
+            </dt>
+            <dd class="cya-answer">
+              {{ data['contact-email'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="contact-details?next=check-your-answers" aria-label="Change contact method">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% if data['contact-method'] == 'phone' %}
+          <div>
+            <dt class="cya-question">
+              Phone number
+            </dt>
+            <dd class="cya-answer">
+              {{ data['contact-phone'] }}
+            </dd>
+            <dd class="cya-change">
+              <a href="contact-details?next=check-your-answers" aria-label="Change contact method">Change</a>
+            </dd>
+          </div>
+        {% endif %}
+          <div>
+            <dt class="cya-question">
+              Address
+            </dt>
+            <dd class="cya-answer">
+              {% if data['agent-address'] == '' %}{{ data['applicant-address'] }}{% endif %}
+              {% if data['agent-address'] %}{{ data['agent-address'] }}{% endif %}
+            </dd>
+            <dd class="cya-change">
+              <a href="contact-details?next=check-your-answers" aria-label="Change contact method">Change</a>
+            </dd>
+          </div>
+      </dl>
+
+      <h2 class="heading-medium">
+        Summary
+      </h2>
+      <dl class="govuk-check-your-answers cya-questions-short">
+        <div>
+          <dt class="cya-question">
+            Total cost
+          </dt>
+          <dd class="cya-answer">
+            £21
+          </dd>
+          <dd class="cya-change">
+
+          </dd>
+        </div>
+      </dl>
+
+
+
+      <br>
+      <div class="form-group">
+        <a href="declaration" class="button">Continue</a>
+      </div>
+    </div>
+
+    <div class="column-one-third">
+      <div class="application-summary">
+        <h2 class="heading-medium">Application number</h2>
+        <span class="heading-large">X2F4-59Q3</span>
+        <p class="font-small">Use this number to return to your application</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}
+
+{% macro getMonthWord(number) %}
+
+  {% set month = '' %}
+
+  {% if number == 1 %}
+    {% set month = 'January' %}
+  {% elseif number == 2 %}
+    {% set month = 'February' %}
+  {% elseif number == 3 %}
+    {% set month = 'March' %}
+  {% elseif number == 4 %}
+    {% set month = 'April' %}
+  {% elseif number == 5 %}
+    {% set month = 'May' %}
+  {% elseif number == 6 %}
+    {% set month = 'June' %}
+  {% elseif number == 7 %}
+    {% set month = 'July' %}
+  {% elseif number == 8 %}
+    {% set month = 'August' %}
+  {% elseif number == 9 %}
+    {% set month = 'September' %}
+  {% elseif number == 10 %}
+    {% set month = 'October' %}
+  {% elseif number == 11 %}
+    {% set month = 'November' %}
+  {% elseif number == 12 %}
+    {% set month = 'December' %}
+  {% endif %}
+
+  {{ month }}
+
+{% endmacro %}

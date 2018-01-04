@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Previous temporary event notice for the same premises
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <button class="link-back">Back</button>
+
+      <form class="form" action="applicant-details-name" method="POST">
+        <div class="form-group" data-required>
+          <fieldset>
+            <legend>
+              <h1 class="heading-large">
+                {% if data['applicant-type'] == "agent" %}Has the applicant{% endif %}{% if data['applicant-type'] == "applicant" %}Have you{% endif %} or any associates already given a temporary event notice for the same premises?
+              </h1>
+            </legend>
+
+            <div class="multiple-choice">
+              <input id="previous-events-before" type="radio" name="previous-events-close" value="before" {{ checked('previous-events-close','before') }}>
+              <label for="previous-events-before">Ending 24 hours or less before this event</label>
+            </div>
+
+            <div class="multiple-choice">
+              <input id="previous-events-after" type="radio" name="previous-events-close" value="after" {{ checked('previous-events-close','after') }}>
+              <label for="previous-events-after">Starting 24 hours or less after this event</label>
+            </div>
+
+            <div class="multiple-choice">
+              <input id="previous-events-neither" type="radio" name="previous-events-close" value="neither" {{ checked('previous-events-close','neither') }}>
+              <label for="previous-events-neither">Neither</label>
+            </div>
+
+          </fieldset>
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+              <input class="button" type="submit" value="Continue">
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

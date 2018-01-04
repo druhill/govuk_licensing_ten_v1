@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Licensable activities
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <button class="link-back">Back</button>
+
+      <form class="form" action="licensable-activity-alcohol" method="POST">
+        <div class="form-group" data-required="Please choose the options that apply">
+          <fieldset>
+            <legend>
+              <h1 class="heading-large">Will the event include any of the following?</h1>
+              <span class="body-text">Select all that apply:</span>
+            </legend>
+            <div class="multiple-choice">
+              <input class="js-select-choice" id="licensable-activities-1" name="licensable-activities" type="checkbox" value="Alcohol" {{ checked('licensable-activities','Alcohol') }}>
+              <label for="licensable-activities-1">Selling alcohol</label>
+            </div>
+            <div class="multiple-choice">
+              <input class="js-select-choice" id="licensable-activities-2" name="licensable-activities" type="checkbox" value="Members" {{ checked('licensable-activities','Members') }}>
+              <label for="licensable-activities-2">Serving alcohol to members of a private club</label>
+            </div>
+            <div class="multiple-choice">
+              <input class="js-select-choice" id="licensable-activities-3" name="licensable-activities" type="checkbox" value="Entertainment" {{ checked('licensable-activities','Entertainment') }}>
+              <label for="licensable-activities-3">Providing entertainment, for example music, dancing, indoor sports</label>
+            </div>
+            <div class="multiple-choice">
+              <input class="js-select-choice" id="licensable-activities-4" name="licensable-activities" type="checkbox" value="Nudity" {{ checked('licensable-activities','Nudity') }}>
+              <label for="licensable-activities-4">Providing entertainment that includes live displays of nudity</label>
+            </div>
+            <div class="multiple-choice">
+              <input class="js-select-choice" id="licensable-activities-5" name="licensable-activities" type="checkbox" value="Food" {{ checked('licensable-activities','Food') }}>
+              <label for="licensable-activities-5">Serving hot food or drink between 11pm and 5am</label>
+            </div>
+            <p class="form-block">or</p>
+            <div class="multiple-choice">
+              <input class="js-deselect-choice" id="licensable-activities-6" name="licensable-activities" type="checkbox" value="None" {{ checked('licensable-activities','None') }}>
+              <label for="licensable-activities-6">None of the above</label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+      </form>
+    </div>
+
+    <div class="column-one-third">
+      <div class="application-summary">
+        <h2 class="heading-medium">Application number</h2>
+        <span class="heading-large">X2F4-59Q3</span>
+        <p class="font-small">Use this number to return to your application</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}

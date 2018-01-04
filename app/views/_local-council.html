@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Local council
+{% endblock %}
+
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <button class="link-back">Back</button>
+      <form class="form" action="task-list#previous-events" method="POST">
+        <div class="form-group" data-required="Please answer this question">
+          <fieldset>
+            <legend>
+              <h1 class="heading-large">Select your local council</h1>
+            </legend>
+            <label class="form-label" for="local-council-autocomplete">Search by postcode or council - for example, SW1A 2AA or Westminster</label>
+            <div id="local-council-autocomplete" name="local-council" class="autocomplete-wrapper" data-default-value="{{ data['local-council'] }}"></div>
+          </fieldset>
+        </div>
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

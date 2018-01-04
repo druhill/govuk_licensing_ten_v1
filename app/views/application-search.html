@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Continue application
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <button class="link-back">Back</button>
+
+      <h1 class="heading-large">
+        Continue an application
+      </h1>
+
+      <form class="form" action="application-continue" method="POST" novalidate>
+        <div class="form-group">
+          <fieldset>
+            <legend>
+              <label class="form-label-bold">Please enter your application number</label>
+              <span class="form-hint">For example, 1A2B-3C4D</span>
+            </legend>
+            <input class="form-control form-control-2-4" aria-label="Enter application number" name="application-number" type="text" id="application-number">
+          </fieldset>
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+              <input class="button" type="submit" value="Search">
+            </div>
+        </div>
+
+        <input type="hidden" name="event-start-date" value="25/01/2018"/>
+        <input type="hidden" name="event-duration" value="2"/>
+        <input type="hidden" name="event-description" value="This is a description of the event that will take place at the location defined in the application"/>
+        <input type="hidden" name="licensable-activities" value="Alcohol"/>
+        <input type="hidden" name="alcohol-start-hour" value="12"/>
+        <input type="hidden" name="alcohol-start-minute" value="00"/>
+        <input type="hidden" name="alcohol-end-hour" value="22"/>
+        <input type="hidden" name="alcohol-end-minute" value="30"/>
+        <input type="hidden" name="event-address" value="46 Colebrooke Row, London N1 8AF"/>
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

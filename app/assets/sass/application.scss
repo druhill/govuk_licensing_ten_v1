@@ -1,0 +1,137 @@
+// Path to assets for use with the file-url function
+// in the govuk frontend toolkit's url-helpers partial
+$path: "/public/images/";
+
+// Import GOV.UK elements from /govuk-modules/, this will import the frontend toolkit and some base styles.
+// Take a look in /govuk-modules/_govuk-elements.scss to see which files are imported.
+@import 'govuk-elements';
+
+// Take a look at in app/assets/sass/patterns/ to see which files are imported.
+@import 'patterns/check-your-answers';
+@import 'patterns/task-list';
+@import 'patterns/task-list-v2'; // TODO: review these lines and merge with task-list
+@import 'patterns/modal-dialog';
+@import 'patterns/accessible-autocomplete';
+@import 'patterns/location-picker';
+@import 'patterns/currency-input';
+@import 'patterns/character-count';
+@import 'patterns/loading-spinner';
+@import 'patterns/date-picker';
+
+legend{
+  overflow: hidden;
+}
+
+a.button-start {
+  &:visited, &:focus {
+    color: $white;
+  }
+}
+
+.link-back {
+  background: none;
+  border: none;
+
+  &:after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid $black;
+
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.card-images .accepted-image {
+
+  @include media(mobile, tablet) {
+    margin-top: 0;
+    max-width: 100%;
+  }
+}
+
+// Related items
+// (These styles will be moved to GOV.UK elements, duplicating here for now.)
+.govuk-related-items {
+  margin-top: $gutter;
+  border-top: 10px solid $govuk-blue;
+  padding-top: 5px;
+
+  .heading-medium {
+    margin-top: 0.3em;
+    margin-bottom: 0.5em;
+  }
+
+  li {
+    margin-bottom: 10px;
+    list-style-type: none;
+  }
+}
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+#address-lookup-loader{
+  clear: both;
+}
+.address-lookup-step2{
+  display: none;
+}
+
+// Card payment page //
+.accepted-image {
+  position: relative;
+  max-width: 340px;
+  margin: -20px 0 5px 0;
+}
+
+.payment-summary {
+  position: fixed;
+  width: 250px;
+  margin-top: 30px;
+  border: 10px solid #DEE0E2;
+  background-color: #F8F8F8;
+  padding: 15px;
+}
+
+.application-summary {
+  margin-top: 30px;
+  border: 10px solid #DEE0E2;
+  background-color: #F8F8F8;
+  padding: 15px;
+}
+
+.payment-summary h2,
+.application-summary h2{
+  margin-top: 5px;
+}
+
+// Postcode
+#event-postcode, .postcode {
+  text-transform: uppercase;
+}
+
+.change-postcode {
+  margin-left: 5px;
+}
+
+// Autocomplete
+.autocomplete-wrapper{
+
+  @include media(tablet) {
+    width: 50%;
+  }
+}
+
+// Utility class for time (Hour:Minute) separator (e.g. 14:30)
+.form-group .form-group-separator{
+  width: auto;
+  padding-top: 7px;
+  margin-left: -10px;
+  margin-right: 10px;
+}
+
+// Calendar fix for font baseline issue
+.bpk-calendar-grid__week button{
+  line-height: 2.05;
+}

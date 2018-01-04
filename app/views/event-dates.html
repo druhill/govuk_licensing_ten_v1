@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  When is the event
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <button class="link-back">Back</button>
+
+      <h1 class="heading-large">
+         When is the event happening?
+      </h1>
+
+      <form class="form" action="event-capacity" method="POST" novalidate>
+        <div class="form-group" data-required="Please provide event start date">
+          <fieldset>
+            <legend>
+              <label class="form-label-bold">When does the event start?</label>
+              <span class="form-hint">For example, 14/03/2017</span>
+            </legend>
+            <div class="form-control-3-4">
+              <div id="event-start-date"></div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="form-group" data-required="Please provide event duration">
+          <fieldset>
+            <legend>
+              <label class="form-label-bold">How many days will the event last?</label>
+            </legend>
+            <div class="form-control-1-4">
+              <input class="form-control" aria-label="Enter number of days" name="event-duration" type="number" id="event-duration" pattern="[0-9]*" value="{{ data['event-duration'] }}">
+            </div>
+          </fieldset>
+        </div>
+
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+          <!--<a href="check-your-answers">Save and return later</a>-->
+        </div>
+
+      </form>
+
+    </div>
+
+    <div class="column-one-third">
+      <div class="application-summary">
+        <h2 class="heading-medium">Application number</h2>
+        <span class="heading-large">X2F4-59Q3</span>
+        <p class="font-small">Use this number to return to your application</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Comment out below to disable hiding of arrows on date picker
+To do: move to prototype-admin -->
+<div id="remove-arrows-from-datepicker"></div>
+
+<style>
+.datepicker-no-arrows div[class^='bpk-calendar-nav__nudger'] button, .datepicker-no-arrows div[class*=' bpk-calendar-nav__nudger'] button {
+    pointer-events: none;
+    cursor: default;
+}
+.datepicker-no-arrows div[class^='bpk-calendar-nav__nudger'] button svg, .datepicker-no-arrows div[class*=' bpk-calendar-nav__nudger'] button svg {
+  fill: #fff!important;
+}
+</style>
+
+{% endblock %}

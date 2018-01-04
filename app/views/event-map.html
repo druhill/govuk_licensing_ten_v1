@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Event location
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <button class="link-back">Back</button>
+      <form class="form" action="event-location-description" method="POST">
+        <fieldset id="mock-map-lookup" data-required="Please answer this question">
+          <!-- <div class="form-group"> -->
+            <legend><h1 class="heading-large">Where will the event be held?</h1></legend>
+          <!-- </div> -->
+          <div class="map-lookup-step1">
+            <div class="form-group">
+              <label class="form-label form-label-bold" for="pac-input">Location</label>
+              <input class="form-control form-control-1-2" id="pac-input" type="text" name="pac-input" placeholder="" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <button class="js-launch-lookup button">Find on a map</button>
+            </div>
+          </div>
+          <div class="map-lookup-step2">
+            <div class="form-group">
+              <label class="form-label form-label-bold" for="change-location">Location</label>
+              <span id="change-location" class="location"></span> <a href="#change-location" aria-label="change location" class="change-location">Change</a>
+            </div>
+            <div class="form-group">
+              <span class="form-label form-label-bold">Select your location</span>
+              <span class="form-hint">Drag the pin to mark the location of your event</span>
+              <div id="map-lookup" style="height:400px"></div>
+              <input id="lat-input" type="hidden" name="lat-input">
+              <input id="lng-input" type="hidden" name="lng-input">
+            </div>
+            <div class="form-group">
+              <input class="button" type="submit" value="Continue">
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="column-one-third">
+      <div class="application-summary">
+        <h2 class="heading-medium">Application number</h2>
+        <span class="heading-large">X2F4-59Q3</span>
+        <p class="font-small">Use this number to return to your application</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}

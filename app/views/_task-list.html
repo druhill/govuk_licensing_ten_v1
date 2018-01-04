@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Task list
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds column-minimum">
+
+      <h1 class="heading-large">
+        Application overview
+      </h1>
+
+      {# <p>A temporary event notice costs £21 and takes 10 days for your local council to process.</p> #}
+      <div class="before-you-start">
+        <h2 class="heading-medium">
+          Before you start
+        </h2>
+        <p>If you’ve not submitted a temporary event notice before you may want to read <a href="#">guidance about holding an event</a>.</p>
+      </div>
+
+      {% macro taskListSection(item) %}
+        <li>
+          <div class="grid-row">
+            <div class="column-two-thirds">
+              <h2 class="task-list-section" id="{{ item.id }}">
+                <span class="task-list-section-number">{{ item.index }}. </span> {{ item.title }}
+              </h2>
+              <div class="task-list-section-details">
+                <p>{{ item.description }}</p>
+              </div>
+            </div>
+            <div class="column-one-third">
+              {% if item.status == 'completed' %}
+              <a class="change-answer" href="{{ item.url }}" >Change answers</a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="grid-row">
+            <div class="column-full">
+              <div class="task-list-section-actions">
+                {% if item.status == 'completed' %}
+                <strong class="task-completed">Completed</strong>
+                {% elif item.status == 'partly-completed' %}
+                <a class="button" href="{{ item.url }}" >Continue section</a>
+                {% elif item.index == 1 or item.status == 'actionable' %}
+                <a class="button" href="{{ item.url }}" >Start section</a>
+                {% else %}
+                <strong class="task-unavailable">Can't start yet</strong>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </li>
+      {% endmacro %}
+
+      <h2 class="heading-medium">Your application</h2>
+      <ol class="task-list">
+        {% for item in items %}
+          {{ taskListSection(item) }}
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

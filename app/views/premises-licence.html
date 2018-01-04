@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Premises licence
+{% endblock %}
+
+{% block after_header %}
+  {% include "includes/timeout_modal.html" %}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <a class="link-back" href="#">Back</a>
+
+      <form class="form" action="premises-area" method="POST" novalidate>
+        <div class="form-group" data-required="Please answer this question">
+          <fieldset>
+
+             <legend>
+               <h1 class="heading-large">
+                 Does the location have an existing licence?
+               </h1>
+             </legend>
+
+             <div class="multiple-choice" data-target="existing-licence-premises-yes">
+               <input id="existing-licence-premises" type="radio" name="existing-licence" value="premises" {{ checked('existing-licence','premises') }}>
+               <label for="existing-licence-premises">Premises licence</label>
+             </div>
+              <div class="panel panel-border-narrow js-hidden" id="existing-licence-premises-yes">
+                  <label class="form-label" for="existing-licence-premises-num">Premises licence number</label>
+                  <input class="form-control form-control-3-4" name="existing-licence-premises-num" data-non-numeric type="text" id="existing-licence-premises-num" pattern="[0-9]\d*(\.\d+)?" value="{{ data['existing-licence-premises-num'] }}">
+              </div>
+
+             <div class="multiple-choice" data-target="existing-licence-club-yes">
+               <input id="existing-licence-club" type="radio" name="existing-licence" value="club" {{ checked('existing-licence','club') }}>
+               <label for="existing-licence-club">Club premises certificate</label>
+             </div>
+             <div class="panel panel-border-narrow js-hidden" id="existing-licence-club-yes">
+                <label class="form-label" for="existing-licence-club-num">Club premises certificate number</label>
+                <input class="form-control form-control-3-4" name="existing-licence-club-num" data-non-numeric type="text" id="existing-licence-club-num" pattern="[0-9]\d*(\.\d+)?" value="{{ data['existing-licence-club-num'] }}">
+             </div>
+
+              <div class="multiple-choice">
+                  <input id="existing-licence" type="radio" name="existing-licence" value="no" {{ checked('existing-licence','no') }}>
+                  <label for="existing-licence">Neither</label>
+              </div>
+           </fieldset>
+         </div>
+         <div class="form-group">
+           <input class="button" type="submit" value="Continue">
+         </div>
+       </form>
+    </div>
+
+      <div class="column-one-third">
+          <div class="application-summary">
+              <h2 class="heading-medium">Application number</h2>
+              <span class="heading-large">X2F4-59Q3</span>
+              <p class="font-small">Use this number to return to your application</p>
+          </div>
+      </div>
+
+  </div>
+</main>
+
+{% endblock %}
